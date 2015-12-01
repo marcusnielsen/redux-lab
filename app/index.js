@@ -3,35 +3,44 @@
 const React = require('react')
 const ReactDom = require('react-dom')
 const Redux = require('redux')
+const List = require('./components/list')
 
-function appReducer(state = 0, action) {
+let nextItemId = 1
+
+function appReducer(state = [], action) {
   switch(action.type) {
-    case 'increment':
-      return state + 1
-    case 'decrement':
-      return state - 1
+    case 'ADD_ITEM':
+      return [...state, {id: action.id, text: action.text}]
+    case 'REMOVE_ITEM':
+      return [...state.slice(0, action.index), ...state.slice(action.index + 1)]
     default:
       return state
   }
 }
 
+function onListClick() {
+    store.dispatch({
+      type: 'ADD_ITEM',
+      text: 'Test',
+      id: nextItemId++
+    })
+}
+
 function render() {
+  console.log(store.getState());
   ReactDom.render(
     (
       <div>
         <h1>Redux lab</h1>
-        <div>{appStore.getState()}</div>
+        <List items={store.getState()} onListClick={onListClick}/>
       </div>
     ),
     document.querySelector('[data-app]'))
 }
 
-const appStore = Redux.createStore(appReducer)
+const store = Redux.createStore(appReducer)
 
-appStore.subscribe(render)
-
+store.subscribe(render)
 render()
 
-appStore.dispatch({type: 'increment'})
-appStore.dispatch({type: 'increment'})
-appStore.dispatch({type: 'increment'})
+store.dispatch({type: 'ADD_ITEM', text: 'First', id: 123456})
