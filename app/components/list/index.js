@@ -1,22 +1,37 @@
 const React = require('react')
+const Component = React.Component
+const store = require('../../store')
 
-const element = (props) => {
-  return (
-    <div>
+let nextItemId = 1
+
+class element extends Component {
+  render() {
+    return (
       <div>
-        <button onClick={props.onListClick}>Add Item</button>
-      </div>
-      <div>
-        <ul>
-          {props.items.map((item) =>
-           <li key={item.id}>
-              {item.text}
-            </li>
-          )}
-        </ul>
-      </div>
-  </div>
-  )
+        <div className="row">
+          <input type="text" className="col-md-6 input-lg" ref={(node) => {
+            this.input = node
+          }}></input>
+        <button onClick={() =>
+          store.dispatch({
+            type: 'ADD_ITEM',
+            text: value,
+            id: nextItemId++
+          })
+        } className="col-md-3 btn-lg btn-success">Add Item</button>
+        </div>
+        <div>
+          <ul>
+            {this.props.items.map((item) =>
+             <li key={item.id}>
+                {item.text}
+              </li>
+            )}
+          </ul>
+        </div>
+    </div>
+    )
+  }
 }
 
 function reducer(state = [], action) {
