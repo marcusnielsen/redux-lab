@@ -1,6 +1,6 @@
 const config = {
   entry: {
-    app: ['webpack/hot/dev-server', './app/index.js']
+    app: ['./app/index.js']
   },
   output: {
     path: './build',
