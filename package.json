@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "prebuild": "rm -rf build/",
-    "build": "NODE_ENV=production webpack webpack.production.config.babel.js -p",
+    "build": "NODE_ENV=production webpack --config webpack.production.config.babel.js -p",
     "postbuild": "cp app/index.html build/index.html",
     "start": "npm run watch",
     "watch": "webpack-dev-server --devtool eval --progress --colors --content-base build --hot",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "publish": "aws s3 sync build s3://mn-redux-lab/ --profile mn --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers"
   },
   "keywords": [],
   "author": "",

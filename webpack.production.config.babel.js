@@ -1,10 +1,10 @@
 const config = {
   entry: {
-    app: ['./app/index.js']
+    bundle: ['./app/index.js']
   },
   output: {
     path: './build',
-    filename: 'bundle.js'
+    filename: '[name].js'
   },
   module: {
     loaders: [
