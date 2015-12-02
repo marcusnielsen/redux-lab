@@ -1,0 +1,13 @@
+{
+  "extends": "rackt",
+  "rules": {
+    "valid-jsdoc": 0,
+    "no-var": 2,
+    "react/jsx-uses-react": 1,
+    "react/jsx-no-undef": 2,
+    "react/wrap-multilines": 2
+  },
+  "plugins": [
+    "react"
+  ]
+}

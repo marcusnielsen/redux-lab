@@ -10,7 +10,7 @@
     "start": "npm run watch",
     "watch": "webpack-dev-server --devtool eval --progress --colors --content-base build --hot",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "publish": "aws s3 sync build s3://mn-redux-lab/ --profile mn --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers"
+    "deploy": "aws s3 sync build s3://mn-redux-lab/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers"
   },
   "keywords": [],
   "author": "",
@@ -18,13 +18,21 @@
   "dependencies": {
     "babel": "^6.1.18",
     "babel-core": "^6.2.1",
+    "babel-eslint": "^4.1.6",
     "babel-loader": "^6.2.0",
     "babel-preset-es2015": "^6.1.18",
     "babel-preset-react": "^6.1.18",
+    "eslint": "^1.10.3",
+    "eslint-config-rackt": "^1.1.1",
+    "eslint-plugin-react": "^3.11.2",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
     "redux": "^3.0.4",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.0"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb": "^1.0.2",
+    "eslint-plugin-react": "^3.11.2"
   }
 }
