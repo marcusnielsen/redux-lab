@@ -1,7 +1,7 @@
 const React = require('react')
 const ReactDom = require('react-dom')
 const Redux = require('redux')
-const List = require('./components/list')
+const List = require('./components/list').element
 
 let nextItemId = 1
 
