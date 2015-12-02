@@ -3,7 +3,7 @@ const ReactDom = require('react-dom')
 const Redux = require('redux')
 const { element: List, reducer: listReducer } = require('./components/list')
 
-let nextItemId = 1
+
 
 function appReducer(state = [], action) {
   switch(action.type) {
@@ -16,20 +16,12 @@ function appReducer(state = [], action) {
   }
 }
 
-function onListClick() {
-  store.dispatch({
-    type: 'ADD_ITEM',
-    text: 'Test',
-    id: nextItemId++
-  })
-}
-
 function render() {
   ReactDom.render(
     (
-      <div>
+      <div className="container-fluid">
         <h1>Redux lab</h1>
-          <List items={store.getState()} onListClick={onListClick}/>
+          <List items={store.getState()} store={store} />
       </div>
     ),
     document.querySelector('[data-app]'))
